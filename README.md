@@ -3,14 +3,20 @@
 Stop writing vague prompts. This pack auto-enhances your prompts before Claude responds.
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-2.x+-orange)
-![Platform](https://img.shields.io/badge/platform-macOS%20|%20Linux-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-2.0-blue)
 
 ## Demo
 
 ![Prompt Enhancer Demo](assets/demo.png)
 
-Type `/enhance explain docker` → get a structured, detailed prompt → approve → get a high-quality response.
+## What's New in v2.0
+
+- **Context-aware**: Scans your codebase before enhancing — detects tech stack, frameworks, and project patterns
+- **Few-shot examples**: Each skill includes before/after examples so Claude knows exactly what "good" looks like
+- **Named techniques**: Uses specific methods like specificity injection, anti-patterns, and constraint setting
+- **Writing classification**: Automatically categorizes into 6 writing types and applies the right framework
+- **Deep platform profiles**: Each AI platform gets genuinely different optimization with detailed examples
 
 ## Install (30 seconds)
 
@@ -25,16 +31,16 @@ Then **restart Claude Code**.
 
 ## Commands
 
-| Command | Best For | Example |
-|---------|----------|---------|
-| `/enhance` | Anything | `/enhance explain kubernetes` |
-| `/enhance-code` | Coding tasks | `/enhance-code python web scraper` |
-| `/enhance-writing` | Writing tasks | `/enhance-writing blog post about AI` |
-| `/enhance-for` | Other AIs | `/enhance-for chatgpt explain docker` |
+| Command | Best For | Context-Aware | Example |
+|---------|----------|:---:|---------|
+| `/enhance` | Anything | ✅ | `/enhance explain kubernetes` |
+| `/enhance-code` | Coding tasks | ✅ Detects tech stack | `/enhance-code add authentication` |
+| `/enhance-writing` | Writing tasks | ✅ Matches content style | `/enhance-writing blog post about AI` |
+| `/enhance-for` | Other AIs | — | `/enhance-for chatgpt explain docker` |
 
 ### `/enhance [prompt]` — General purpose
 
-Takes any rough prompt and adds specificity, structure, and format preferences.
+Analyzes your prompt for intent, audience, scope, and gaps. Adds specificity, structure, constraints, and anti-patterns.
 
 ```
 /enhance explain kubernetes
@@ -42,29 +48,42 @@ Takes any rough prompt and adds specificity, structure, and format preferences.
 /enhance help me with system design interview prep
 ```
 
-### `/enhance-code [prompt]` — Code focused
+### `/enhance-code [prompt]` — Code focused (reads your codebase)
 
-Adds language, error handling, testing, edge cases, code style.
-
-```
-/enhance-code REST API with authentication
-/enhance-code python web scraper
-/enhance-code fix the memory leak in my app
-```
-
-### `/enhance-writing [prompt]` — Writing focused
-
-Adds audience, tone, structure, length, key themes.
+Automatically detects your project's tech stack from `package.json`, `requirements.txt`, `Cargo.toml`, etc. References actual files and patterns from your codebase in the enhanced prompt.
 
 ```
-/enhance-writing cover letter for Google
-/enhance-writing blog post about AI trends
-/enhance-writing product launch announcement email
+/enhance-code add authentication        # detects Next.js, suggests NextAuth
+/enhance-code add endpoint for users    # detects FastAPI, matches existing router pattern
+/enhance-code python web scraper        # no project? falls back to best practices
+```
+
+**Example output inside a Next.js project:**
+```
+ENHANCED CODE PROMPT
+─────────────────────────────────────
+Project: Next.js 14 + TypeScript + Prisma
+─────────────────────────────────────
+Add authentication using NextAuth.js (already in package.json).
+Implement: sign-in page at /auth/signin with email/password
+and Google OAuth, session management using the existing Prisma
+adapter, protected API routes using middleware...
+```
+
+### `/enhance-writing [prompt]` — Writing focused (classifies type)
+
+Classifies your request into one of 6 categories (technical, business, marketing, creative, academic, personal) and applies the right enhancement framework for each.
+
+```
+/enhance-writing cover letter for Google          # → Personal: authenticity, highlights
+/enhance-writing blog post about AI trends        # → Marketing: hook, audience, CTA
+/enhance-writing API documentation                # → Technical: structure, code examples
+/enhance-writing email to client about delay      # → Business: tone, action items
 ```
 
 ### `/enhance-for [platform] [prompt]` — Cross-platform
 
-Rewrites your prompt optimized for a specific AI. Copy the result and paste it there.
+Each AI responds differently to prompt structures. This rewrites your prompt optimized for a specific platform's strengths. Copy the result and paste it there.
 
 Supported: `chatgpt` · `gemini` · `cursor` · `copilot` · `claude`
 
@@ -76,18 +95,25 @@ Supported: `chatgpt` · `gemini` · `cursor` · `copilot` · `claude`
 
 | Platform | Optimization Strategy |
 |----------|----------------------|
-| ChatGPT | Role-based framing, markdown, numbered steps |
-| Gemini | Structured multi-part questions, explicit format requests |
-| Cursor | File context, language/framework, function signatures |
-| Copilot | Concise, code-focused, input/output types, edge cases |
-| Claude | Clear constraints, step-by-step, well-defined scope |
+| ChatGPT | Role-based persona, markdown formatting, numbered steps |
+| Gemini | Structured sections, tables, comparison frameworks |
+| Cursor | File paths, function signatures, project-aware context |
+| Copilot | Comment-style, input/output types, inline edge cases |
+| Claude | Clear constraints, scope boundaries, anti-patterns |
 
 ## How It Works
 
-1. Type a rough prompt after any `/enhance` command
-2. Claude rewrites it into a structured, detailed version
-3. Choose: **yes** (proceed) · **edit: [changes]** (modify) · **skip** (use original)
-4. Claude responds only after your confirmation
+```
+You type:     /enhance explain docker
+                    ↓
+Claude:       [Scans project context if available]
+                    ↓
+Claude shows: Enhanced, well-structured prompt
+                    ↓
+You choose:   yes → proceed | edit → modify | skip → use original
+                    ↓
+Claude:       High-quality response based on approved prompt
+```
 
 ## Project Structure
 
@@ -95,6 +121,8 @@ Supported: `chatgpt` · `gemini` · `cursor` · `copilot` · `claude`
 prompt-enhancer-pack/
 ├── README.md
 ├── install.sh
+├── assets/
+│   └── demo.png
 └── skills/
     ├── enhance/SKILL.md             → /enhance
     ├── enhance-code/SKILL.md        → /enhance-code
@@ -117,8 +145,9 @@ PRs welcome! To add a new enhancer:
 
 1. Create `skills/your-skill-name/SKILL.md`
 2. Add YAML frontmatter with `name` and `description`
-3. Write the enhancement instructions in markdown
-4. Test it locally, then submit a PR
+3. Add `allowed-tools` if it needs codebase access
+4. Include few-shot examples for better results
+5. Test it locally, then submit a PR
 
 ## Requirements
 

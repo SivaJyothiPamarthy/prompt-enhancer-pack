@@ -123,7 +123,6 @@ PRs welcome! To add a new enhancer:
 ## Requirements
 
 - Claude Code 2.x+
-- macOS or Linux
 
 ## License
 

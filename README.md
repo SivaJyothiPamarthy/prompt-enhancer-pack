@@ -3,7 +3,6 @@
 Stop writing vague prompts. This pack auto-enhances your prompts before Claude responds.
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-2.x+-orange)
-![License](https://img.shields.io/badge/license-MIT-green)
 ![Version](https://img.shields.io/badge/version-2.0-blue)
 
 ## Demo
@@ -153,6 +152,3 @@ PRs welcome! To add a new enhancer:
 
 - Claude Code 2.x+
 
-## License
-
-MIT

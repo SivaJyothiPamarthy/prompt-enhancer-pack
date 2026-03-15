@@ -132,10 +132,8 @@ prompt-enhancer-pack/
 ## Uninstall
 
 ```bash
-rm -rf ~/.claude/skills/enhance
-rm -rf ~/.claude/skills/enhance-code
-rm -rf ~/.claude/skills/enhance-writing
-rm -rf ~/.claude/skills/enhance-for
+chmod +x uninstall.sh
+./uninstall.sh
 ```
 
 ## Contributing

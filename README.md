@@ -119,7 +119,9 @@ Claude:       High-quality response based on approved prompt
 ```
 prompt-enhancer-pack/
 ├── README.md
+├── CHANGELOG.md
 ├── install.sh
+├── uninstall.sh
 ├── assets/
 │   └── demo.png
 └── skills/

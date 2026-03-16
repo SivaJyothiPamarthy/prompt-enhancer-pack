@@ -19,11 +19,19 @@ Stop writing vague prompts. This pack auto-enhances your prompts before Claude r
 
 ## Install (30 seconds)
 
+**macOS / Linux:**
 ```bash
 git clone https://github.com/SivaJyothiPamarthy/prompt-enhancer-pack.git
 cd prompt-enhancer-pack
 chmod +x install.sh
 ./install.sh
+```
+
+**Windows:**
+```cmd
+git clone https://github.com/SivaJyothiPamarthy/prompt-enhancer-pack.git
+cd prompt-enhancer-pack
+install.bat
 ```
 
 Then **restart Claude Code**.
@@ -121,6 +129,7 @@ prompt-enhancer-pack/
 ├── README.md
 ├── CHANGELOG.md
 ├── install.sh
+├── install.bat
 ├── uninstall.sh
 ├── assets/
 │   └── demo.png

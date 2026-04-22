@@ -8,7 +8,7 @@ DEST="$HOME/.claude/skills"
 
 for skill in enhance enhance-code enhance-writing enhance-for; do
     if [ -d "$DEST/$skill" ]; then
-        rm -rf "$DEST/$skill"
+        rm -rf "${DEST:?}/$skill"
         echo "  ✅ Removed /$skill"
     else
         echo "  ⏭️  /$skill not found, skipping"

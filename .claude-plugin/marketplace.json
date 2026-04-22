@@ -1,0 +1,36 @@
+{
+  "name": "prompt-enhancer",
+  "owner": {
+    "name": "Siva Jyothi Pamarthy"
+  },
+  "metadata": {
+    "description": "Slash commands that auto-enhance vague prompts into well-structured ones before Claude responds.",
+    "version": "2.0.0"
+  },
+  "plugins": [
+    {
+      "name": "prompt-enhancer-pack",
+      "source": "./",
+      "description": "Four prompt-enhancement skills: /enhance, /enhance-code, /enhance-writing, /enhance-for.",
+      "version": "2.0.0",
+      "author": {
+        "name": "Siva Jyothi Pamarthy"
+      },
+      "homepage": "https://github.com/SivaJyothiPamarthy/prompt-enhancer-pack",
+      "repository": "https://github.com/SivaJyothiPamarthy/prompt-enhancer-pack",
+      "license": "MIT",
+      "keywords": [
+        "prompt-engineering",
+        "claude-code",
+        "skills",
+        "productivity",
+        "chatgpt",
+        "gemini",
+        "cursor",
+        "copilot"
+      ],
+      "category": "productivity",
+      "tags": ["prompt", "enhancer", "writing", "code"]
+    }
+  ]
+}

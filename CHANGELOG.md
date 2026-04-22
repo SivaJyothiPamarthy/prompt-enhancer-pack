@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.1
+
+- Distributable as a Claude Code plugin via `/plugin marketplace add SivaJyothiPamarthy/prompt-enhancer-pack`
+- Added `.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json` manifests
+- Added MIT `LICENSE`
+- README updated with plugin install as the recommended path; legacy script install preserved
+
 ## v2.0
 
 - Context-aware enhancement — scans codebase to detect tech stack, frameworks, and project patterns

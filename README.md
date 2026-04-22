@@ -4,6 +4,8 @@ Stop writing vague prompts. This pack auto-enhances your prompts before Claude r
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-2.x+-orange)
 ![Version](https://img.shields.io/badge/version-2.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Plugin](https://img.shields.io/badge/Claude_Code-Plugin-purple)
 
 ## Demo
 
@@ -17,7 +19,21 @@ Stop writing vague prompts. This pack auto-enhances your prompts before Claude r
 - **Writing classification**: Automatically categorizes into 6 writing types and applies the right framework
 - **Deep platform profiles**: Each AI platform gets genuinely different optimization with detailed examples
 
-## Install (30 seconds)
+## Install (10 seconds)
+
+**Recommended — install as a Claude Code plugin** (auto-updates, one command):
+
+```
+/plugin marketplace add SivaJyothiPamarthy/prompt-enhancer-pack
+/plugin install prompt-enhancer-pack@prompt-enhancer
+```
+
+Skills are then available as `/prompt-enhancer-pack:enhance`, `/prompt-enhancer-pack:enhance-code`, etc.
+
+To update later: `/plugin marketplace update prompt-enhancer`.
+
+<details>
+<summary>Manual install (legacy, unscoped skill names)</summary>
 
 **macOS / Linux:**
 ```bash
@@ -34,9 +50,13 @@ cd prompt-enhancer-pack
 install.bat
 ```
 
-Then **restart Claude Code**.
+Then **restart Claude Code**. Skills are available as `/enhance`, `/enhance-code`, etc.
+
+</details>
 
 ## Commands
+
+> **Note on naming:** Examples below use the unscoped names (`/enhance`). If you installed via the plugin marketplace, the names are namespaced: `/prompt-enhancer-pack:enhance`, `/prompt-enhancer-pack:enhance-code`, etc. Functionality is identical.
 
 | Command | Best For | Context-Aware | Example |
 |---------|----------|:---:|---------|
@@ -128,9 +148,13 @@ Claude:       High-quality response based on approved prompt
 prompt-enhancer-pack/
 ├── README.md
 ├── CHANGELOG.md
-├── install.sh
-├── install.bat
-├── uninstall.sh
+├── LICENSE
+├── .claude-plugin/
+│   ├── marketplace.json             → declares this repo as a Claude Code marketplace
+│   └── plugin.json                  → plugin manifest (name, version, author)
+├── install.sh                       → legacy manual installer
+├── install.bat                      → legacy manual installer (Windows)
+├── uninstall.sh                     → legacy manual uninstaller
 ├── assets/
 │   └── demo.png
 └── skills/
@@ -142,6 +166,13 @@ prompt-enhancer-pack/
 
 ## Uninstall
 
+**Plugin install:**
+```
+/plugin uninstall prompt-enhancer-pack@prompt-enhancer
+/plugin marketplace remove prompt-enhancer
+```
+
+**Legacy manual install:**
 ```bash
 chmod +x uninstall.sh
 ./uninstall.sh
